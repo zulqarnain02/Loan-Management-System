@@ -140,9 +140,9 @@ loan-management-system/
 
 ## 👨‍💻 Developer
 
-- **Name**: Your Name  
-- **Email**: your-email@example.com  
-- **GitHub**: [@your-username](https://github.com/your-username)  
+- **Name**: MOHAMMMED ZULQARNAIN
+- **Email**: zulqarnain4292@gmail.com   
+- **GitHub**: [@zulqarnain02](https://github.com/zulqarnain02/)  
 
 ## 🤝 Contributing
 
