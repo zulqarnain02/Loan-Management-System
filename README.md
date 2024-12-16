@@ -1,4 +1,4 @@
-![Screenshot 2024-12-16 161003](https://github.com/user-attachments/assets/8530366d-539a-4771-84d4-e759dd178f73)![Screenshot 2024-12-16 161629](https://github.com/user-attachments/assets/e703614f-16bc-4a1f-b659-d41b7cf04530)# 💼 Loan Management System
+# 💼 Loan Management System
 
 Welcome to the Loan Management System 🚀 built using Django, HTML, CSS, JavaScript, and MySQL! This project streamlines loan management, tracking, and repayment processes with an intuitive UI.
 
