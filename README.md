@@ -140,8 +140,8 @@ loan-management-system/
 
 ## 👨‍💻 Developer
 
-- **Name**: MOHAMMMED ZULQARNAIN
-- **Email**: zulqarnain4292@gmail.com   
+- **Name**: MOHAMMED ZULQARNAIN
+- **Email**: zulqarnain4292@gmail.com
 - **GitHub**: [@zulqarnain02](https://github.com/zulqarnain02/)  
 
 ## 🤝 Contributing
