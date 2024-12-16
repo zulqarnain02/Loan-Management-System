@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>contact | loanManagement</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./script.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
+  </head>
+  {% load static %}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "spartan", sans-serif;
+    }
+
+    body {
+      width: 100%;
+      background-image: url("{% static 'loan.png' %}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+      margin: 10px;
+    }
+    h1 {
+      font-size: 50px;
+      line-height: 64px;
+      color: #222;
+    }
+
+    h2 {
+      font-size: 50px;
+      line-height: 64px;
+      color: #222;
+    }
+
+    h4 {
+      font-size: 20px;
+      color: #222;
+    }
+
+    h6 {
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #465b52;
+      margin: 15px 0 20px 0;
+    }
+
+    .section-p1 {
+      padding: 40px 40px;
+    }
+
+    .section-m1 {
+      width: 40px 0;
+    }
+
+    button.normal {
+      font-size: 14px;
+      font-weight: 600;
+      padding: 5px 30px;
+      color: #000;
+      background-color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    button.white {
+      font-size: 13px;
+      font-weight: 600;
+      padding: 11px 18px;
+      color: #fff;
+      background-color: transparent;
+
+      cursor: pointer;
+      border: 1px solid #fff;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    body {
+      width: 100%;
+      margin: 10px;
+    }
+
+    #header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 80px;
+      background: #e3e6f3;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+      z-index: 999;
+      position: sticky;
+      top: 0;
+      left: 0;
+      height: 100px;
+    }
+
+    #navbar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #navbar li {
+      list-style: none;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    #navbar li a {
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a1a1a;
+      transition: 0.3s ease;
+    }
+
+    #navbar li a:hover,
+    #navbar li a.active {
+      color: #088178;
+    }
+    #navbar li a.active::after,
+    #navbar li a:hover::after {
+      content: "";
+      width: 30%;
+      height: 2px;
+      background: #088178;
+      position: absolute;
+      bottom: -4px;
+      left: 20px;
+    }
+
+    #newsletter {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: center;
+      background-image: url("img/banner/b14.png");
+      background-repeat: no-repeat;
+      background-position: 20% 30%;
+      background-color: #041e42;
+    }
+
+    #newsletter h4 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    #newsletter p {
+      font-size: 14px;
+      font-weight: 600;
+      color: #818ea0;
+    }
+
+    #newsletter p span {
+      color: #ffbd27;
+    }
+
+    #newsletter input {
+      height: 3.125rem;
+      padding: 0 1.25em;
+      font-size: 14px;
+      width: 100%;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      outline: none;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    #newsletter .form {
+      display: flex;
+      width: 40%;
+    }
+
+    #newsletter button {
+      background-color: #088178;
+      color: #fff;
+      white-space: nowrap;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    footer .col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    footer .logo {
+      margin-bottom: 30px;
+    }
+
+    footer h4 {
+      font-size: 14px;
+      padding-bottom: 20px;
+    }
+
+    footer p {
+      font-size: 13px;
+      padding-bottom: 0 0 8px 0;
+    }
+
+    footer a {
+      font-size: 13px;
+      text-decoration: none;
+      color: #222;
+      margin-bottom: 10px;
+    }
+
+    footer .follow {
+      margin-top: 20px;
+    }
+
+    footer .follow i {
+      color: #465b52;
+      padding-right: 4px;
+      cursor: pointer;
+    }
+
+    footer .install .row img {
+      border: 1px solid #088178;
+      border-radius: 6px;
+    }
+
+    footer .install img {
+      margin: 10px 0 15px 0;
+    }
+
+    footer a:hover {
+      color: #088178;
+    }
+
+    #mobile {
+      display: none;
+      align-items: center;
+    }
+
+    #close {
+      display: none;
+    }
+
+    /* contact-page */
+    #contact-details {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    #contact-details .details {
+      width: 40%;
+    }
+    #contact-details .details span,
+    #form-details form span {
+      font-size: 12px;
+    }
+    #contact-details .details h2,
+    #form-details form h2 {
+      font-size: 26px;
+      line-height: 35px;
+      padding: 20px 0;
+    }
+    #contact-details .details h3 {
+      font-size: 16px;
+      padding-bottom: 15px;
+    }
+
+    #contact-details .details li {
+      list-style: none;
+      padding: 10px 0;
+      display: flex;
+    }
+
+    #contact-details .details li i {
+      font-size: 14px;
+      padding-right: 22px;
+    }
+    #contact-details .details li p {
+      margin: 0;
+      font-size: 14px;
+    }
+    #contact-details .map {
+      width: 55%;
+      height: 400px;
+    }
+
+    #contact-details .map iframe {
+      width: 100%;
+      height: 100%;
+    }
+    #form-details {
+      display: flex;
+      justify-content: space-between;
+      margin: 30px;
+      padding: 80px;
+      border: 1px solid #a43030ac;
+    }
+    #form-details form {
+      width: 65%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    #form-details form input,
+    #form-details form textarea {
+      width: 100%;
+      padding: 12px 15px;
+      outline: none;
+      margin: 20px;
+      border: 1px solid #e1e1e1;
+    }
+    #form-details form button {
+      background-color: #088178;
+      color: #fff;
+      padding: 12px 15px;
+      margin: 20px;
+    }
+    #form-details .people {
+      margin-top: 40px;
+    }
+    #form-details .people div {
+      padding-bottom: 25px;
+      display: flex;
+      align-items: flex-start;
+      padding-top: 30px;
+      margin-top: 40px;
+    }
+    #form-details .people div img {
+      width: 65px;
+      height: 65px;
+      object-fit: cover;
+      margin-right: 15px;
+    }
+    #form-details .people div p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 15px;
+    }
+    #form-details .people div p span {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+      color: #000;
+    }
+  </style>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand fs-1" href="#"><i>LoanPlace</i></a>
+        <button
+          class="navbar-toggler fs-3"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse fs-5" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/loan_status/">Application Status</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/creditscore/">Credit Score</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/transaction/">Loan Repayment</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/contact/">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section id="contact-details" class="section-p1">
+      <div class="details">
+        <span>GET IN TOUCH</span>
+        <h2>visit one of our agence location or contact us today</h2>
+        <h3>Head Office</h3>
+        <div>
+          <li>
+            <i class="fal fa-map"></i>
+            <p>
+              PES University 100feet ring road,Banashankari stage III,bengalure
+              karnataka 560085
+            </p>
+          </li>
+          <li>
+            <i class="fal fa-envelope"></i>
+            <p>zulqarnain4292@gmail.com</p>
+          </li>
+          <li>
+            <i class="fal fa-phone-alt"></i>
+            <p>zulqarnain4292@gmail.com</p>
+          </li>
+          <li>
+            <i class="fal fa-clock"></i>
+            <p>monday to saturday 9.00am to 9pm</p>
+          </li>
+        </div>
+      </div>
+      <div class="map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31108.55445741469!2d77.52529532386588!3d12.935379999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3e468d8d36d3%3A0x694d74f6ac640acf!2sPES%20University!5e0!3m2!1sen!2sin!4v1669220730741!5m2!1sen!2sin"
+          width="600"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </section>
+    <section id="form-details">
+      <form action="">
+        <span>LEAVE A MESSAGE</span>
+        <h2>We love to hear from you</h2>
+        <input type="text" placeholder="your name" />
+        <input type="text" placeholder="email" />
+        <input type="text" placeholder="subject" />
+        <textarea
+          name=""
+          id=""
+          cols="30"
+          rows="10"
+          placeholder="your message"
+        ></textarea>
+        <button class="normal">Submit</button>
+      </form>
+
+      <div class="people">
+        <div>
+          <img src="#" alt="" />
+          <p>
+            <span>Mohammed Zulqarnain</span><br />Phone: +91 7338676845
+            <br />Email: zulqaarnain4292@gmail.com
+          </p>
+        </div>
+        <div>
+          <img src="#" alt="" />
+          <p>
+            <span>Manjunath</span><br />Phone: +91 7338589647 <br />Email:
+            manjunath4292@gmail.com
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="newsletter" class="section-p1 section-m1">
+      <div class="newstext">
+        <h4>Sign Up for Newsletters</h4>
+        <p>
+          get E-mail updates about our latest shop and
+          <span>special offer</span>
+        </p>
+      </div>
+      <div class="form">
+        <input type="text" placeholder="your email address" />
+        <button class="normal">SignUp</button>
+      </div>
+    </section>
+
+    <footer class="section-p1">
+      <div class="col">
+        <h4>contacet</h4>
+        <p><b>Address</b>: PES University ring road campus</p>
+        <p><b>Phone</b>: (+91)7338676845</p>
+        <div class="follow">
+          <h4>follow</h4>
+          <div class="icon">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-youtube"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <h4>About</h4>
+        <a href="#">About us</a>
+        <a href="#">Delivery Information</a>
+        <a href="#">contact us</a>
+      </div>
+      <div class="col">
+        <h4>My Account</h4>
+        <a href="#">sign in</a>
+        <a href="#">My wishlist</a>
+        <a href="#">track My Order</a>
+        <a href="#">Help</a>
+      </div>
+      <div class="col install">
+        <h4>Secured Pay Gatewats</h4>
+        <img src="img/pay/pay.png" alt="" />
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

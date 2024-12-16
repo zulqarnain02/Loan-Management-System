@@ -1,0 +1,320 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form | loan management</title>
+  </head>
+  {% load static %}
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url("{% static 'loan.png' %}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      margin: 15px;
+    }
+
+    .container {
+      max-width: 650px;
+      border: 1px solid #000;
+      border-radius: 10px;
+      margin: 0 auto;
+      padding: 30px;
+      /* background-color: #fff; */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin: 10px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    input[type="number"],
+    input[type="tel"],
+    select {
+      width: 96%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-right: 5px;
+    }
+
+    .radio-label {
+      display: inline;
+      margin-right: 20px;
+    }
+
+    .btn {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .btn-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .dob {
+      margin-top: 20px;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* Style the radio buttons */
+    input[type="radio"] {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      border: 2px solid #007bff;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+      cursor: pointer;
+      vertical-align: middle;
+    }
+
+    /* Style the radio button when selected */
+    input[type="radio"]:checked {
+      background-color: #007bff;
+      border: 2px solid #007bff;
+    }
+
+    /* Style the radio button labels */
+    input[type="radio"] + label {
+      vertical-align: middle;
+    }
+
+    /* Style radio buttons and checkboxes */
+    input[type="radio"],
+    input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      border: 2px solid #007bff;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      vertical-align: middle;
+    }
+
+    /* Add space between radio buttons and labels */
+    input[type="radio"] + label,
+    input[type="checkbox"] + label {
+      vertical-align: middle;
+      color: #007bff;
+      margin-left: 5px; /* Add margin for spacing */
+    }
+
+    /* Style radio button when selected */
+    input[type="radio"]:checked,
+    input[type="checkbox"]:checked {
+      background-color: #007bff;
+      border: 2px solid #007bff;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <h2>Personal Loan</h2>
+      <form action="{% url 'loanform' %}" method="post">
+        {% csrf_token %}
+        <label for="loanAmount">Desired Loan Amount:</label>
+        <input type="text" id="loanAmount" name="loanAmount" required />
+
+        <label for="employeeType">Employee Type:</label>
+        <select id="employeeType" name="employeeType" required>
+          <option value="" selected disabled>Select an option</option>
+          <option value="Salaried">Salaried</option>
+          <option value="Self-employed (Business)">
+            Self-employed (Business)
+          </option>
+          <option value="Self-employed (Professional)">
+            Self-employed (Professional)
+          </option>
+        </select>
+
+        <label for="netMonthlyIncome">Net Monthly Income:</label>
+        <input
+          type="number"
+          id="netMonthlyIncome"
+          name="netMonthlyIncome"
+          required
+        />
+
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" required />
+
+        <label for="phoneNumber">Phone Number:</label>
+        <input
+          type="tel"
+          id="phoneNumber"
+          name="phoneNumber"
+          placeholder="1234567890"
+          required
+        />
+
+        <label for="email">Enter Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="panNumber">PAN Number:</label>
+        <input
+          type="text"
+          id="panNumber"
+          name="panNumber"
+          placeholder="ABCPD1234E"
+          pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}"
+          required
+        />
+        <small
+          >Format: ABCDE1234F (5 uppercase letters, 4 digits, 1 uppercase
+          letter)</small
+        >
+        <label for="dob" class="dod">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required />
+
+        <label for="pinCode">Pin Code:</label>
+        <input type="text" id="pinCode" name="pinCode" required />
+
+        <label>Gender:</label>
+        <div class="radio-label">
+          <input type="radio" id="male" name="gender" value="Male" />Male
+          <!-- <label for="male">Male</label> -->
+          <input type="radio" id="female" name="gender" value="Female" />Female
+          <!-- <label for="female">Female</label> -->
+        </div>
+
+        <label for="residingCity">Current Full Address:</label>
+        <input type="text" id="residingCity" name="residingCity" required />
+
+        <label>Have you taken any loan in the past?</label>
+        <div class="radio-label">
+          <input
+            type="radio"
+            id="loanHistoryYes"
+            name="loanHistory"
+            value="Yes"
+          />Yes
+          <input
+            type="radio"
+            id="loanHistoryNo"
+            name="loanHistory"
+            value="No"
+          />No
+        </div>
+        <br />
+        <label>Do you have an existing credit card?</label>
+        <div class="radio-label">
+          <input
+            type="radio"
+            id="creditCardYes"
+            name="creditCard"
+            value="Yes"
+          />Yes
+          <input
+            type="radio"
+            id="creditCardNo"
+            name="creditCard"
+            value="No"
+          />No
+        </div>
+
+        <label for="loanPurpose">Purpose of Loan:</label>
+        <select id="loanPurpose" name="loanPurpose">
+          <option value="" selected disabled>Select an option</option>
+          <option value="Home Purchase">Home Purchase</option>
+          <option value="Education">Education</option>
+          <option value="Medical Expenses">Medical Expenses</option>
+          <option value="Debt Consolidation">Debt Consolidation</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <div id="otherPurpose" style="display: none">
+          <label for="otherPurposeTextarea">Specify Other Purpose:</label>
+          <textarea
+            id="otherPurposeTextarea"
+            name="otherPurpose"
+            rows="4"
+            cols="50"
+          ></textarea>
+        </div>
+
+        <input type="checkbox" id="agreement" name="agreement" required />I
+        agree to the terms and conditions
+        <br />
+        <div class="btn-container">
+          <button type="submit" class="btn">process</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
+<!-- <script>
+  // Set the default option as selected
+  document.getElementById("loanPurpose").selectedIndex = 0;
+
+  const loanPurposeSelect = document.getElementById("loanPurpose");
+  const otherPurposeTextarea = document.getElementById("otherPurposeTextarea");
+  const otherPurposeDiv = document.getElementById("otherPurpose");
+
+  // Listen for the change event on the select element
+  loanPurposeSelect.addEventListener("change", function () {
+    if (loanPurposeSelect.value === "Other") {
+      otherPurposeDiv.style.display = "block";
+    } else {
+      otherPurposeDiv.style.display = "none";
+    }
+  });
+</script> -->
+<script>
+  // Set the default option as selected
+  document.getElementById("loanPurpose").selectedIndex = 0;
+
+  const loanPurposeSelect = document.getElementById("loanPurpose");
+  const otherPurposeTextarea = document.getElementById("otherPurposeTextarea");
+  const otherPurposeDiv = document.getElementById("otherPurpose");
+  const h2Element = document.querySelector("h2");
+
+  // Retrieve loan type from the URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const loanType = urlParams.get("loanType");
+
+  // Set the content of h2 based on the loan type
+  if (loanType) {
+    h2Element.textContent = loanType;
+  }
+
+  // Listen for the change event on the select element
+  loanPurposeSelect.addEventListener("change", function () {
+    if (loanPurposeSelect.value === "Other") {
+      otherPurposeDiv.style.display = "block";
+    } else {
+      otherPurposeDiv.style.display = "none";
+    }
+  });
+</script>

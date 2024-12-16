@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | loanManagement</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
+  </head>
+  {% load static %}
+  <style>
+    /* navbar */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "spartan", sans-serif;
+    }
+    body {
+      width: 100%;
+      background-image: url("{% static 'loan.png' %}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      /* margin: 10px; */
+      font-family: Arial, sans-serif;
+      margin: 10px;
+    }
+
+    #header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 80px;
+      background: #e3e6f3;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+      z-index: 999;
+      position: sticky;
+      top: 0;
+      left: 0;
+      height: 100px;
+    }
+
+    footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    footer .logo {
+      margin-bottom: 30px;
+    }
+
+    #navbar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #navbar li {
+      list-style: none;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    #navbar li a {
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a1a1a;
+      transition: 0.3s ease;
+    }
+
+    #navbar li a:hover,
+    #navbar li a.active {
+      color: #088178;
+    }
+    #navbar li a.active::after,
+    #navbar li a:hover::after {
+      content: "";
+      width: 30%;
+      height: 2px;
+      background: #088178;
+      position: absolute;
+      bottom: -4px;
+      left: 20px;
+    }
+
+    #mobile {
+      display: none;
+      align-items: center;
+    }
+
+    #flex {
+      border: 3px solid black;
+      border-radius: 8px;
+      width: 300px;
+      height: 200px;
+      margin: 20px;
+      padding: 30px;
+      text-align: center;
+    }
+
+    #flex-box {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+
+    #flex-box #flex:hover {
+      box-shadow: 10px 10px 54px rgba(23, 12, 229, 0.133);
+    }
+    .rot:hover {
+      transform: scale(0.9);
+    }
+  </style>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand fs-1" href="#"><i>LoanPlace</i></a>
+        <button
+          class="navbar-toggler fs-3 rot"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse fs-5" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="loan_status/">Application Status</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="creditscore/">Credit Score</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="transaction/">Loan Repayment</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact/">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- <section id="flex-box">
+      <div id="flex" onclick="he()">PERSONAL LOAN</div>
+      <div id="flex" onclick="he()">MICRO LOAN(UNDER &#8377;50K)</div>
+      <div id="flex" onclick="he()">BUSINESS LOAN</div>
+      <div id="flex" onclick="he()">HOME LOAN</div>
+      <div id="flex" onclick="he()">EDUCATION LOAN</div>
+      <div id="flex" onclick="he()">Other loan</div>
+    </section> -->
+    <section id="flex-box">
+      <div id="flex" onclick="he('PERSONAL LOAN')">PERSONAL LOAN</div>
+      <div id="flex" onclick="he('MICRO LOAN(UNDER ₹50K)')">
+        MICRO LOAN(UNDER ₹50K)
+      </div>
+      <div id="flex" onclick="he('BUSINESS LOAN')">BUSINESS LOAN</div>
+      <div id="flex" onclick="he('HOME LOAN')">HOME LOAN</div>
+      <div id="flex" onclick="he('EDUCATION LOAN')">EDUCATION LOAN</div>
+      <div id="flex" onclick="he('OTHER LOAN')">OTHER LOAN</div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      //function he(){
+      //  window.location.href='/form/';
+      //}
+      function he(loanType) {
+        window.location.href = `/form/?loanType=${loanType}`;
+      }
+    </script>
+  </body>
+</html>

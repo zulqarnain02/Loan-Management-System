@@ -1,0 +1,103 @@
+<!-- select.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>select | loanManagement</title>
+    {% load static %}
+    <style>
+      body {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        background-image: url("{% static 'loan.png' %}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        font-family: Arial, sans-serif;
+        margin: 10px;
+      }
+
+      .lender-box {
+        border: 3px solid #cccccc;
+        padding:20px; /* increased padding for better spacing */
+        margin: 5%;
+        width: 33%;
+        min-width: 237px;
+
+      }
+
+      .user-info {
+        background-image: linear-gradient(to top left, #ffb003, #ffcb03);
+        margin: 10px;
+        padding: 10px;
+        border: 2px solid black;
+        border-radius: 8px;
+      }
+
+      .select-button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+      #user{
+        width: 89vw;
+        text-align: center;
+      }
+      #lenders{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+      }
+    </style>
+  </head>
+  <body>
+    {% block user_content %} {% if user_and_lenders %}
+    <form method="post" action="{% url 'update_user_with_lender' %}">
+      {% csrf_token %}
+      <div class="user-info" id="user">
+        <h2>User Information</h2>
+        <p><strong>Customer ID :</strong> {{ user_and_lenders.0.customerID }}</p>
+        <p><strong>Full Name :</strong> {{ user_and_lenders.0.full_name }}</p>
+        <p><strong>Phone Number :</strong> {{ user_and_lenders.0.phone_no }}</p>
+        <p><strong>Loan Amount :</strong> {{ user_and_lenders.0.loanAmount }}</p>
+        <p>
+          <strong>Credit Score:</strong> {{ user_and_lenders.0.credit_score }}
+        </p>
+      </div>
+    </form>
+    <div id="lenders">
+    {% endif %} {% endblock %} 
+    {% block lender_content %} 
+    {% if user_and_lenders %} 
+    {% for user_and_lender in user_and_lenders %}
+      <div class="lender-box">
+        <p>Lender ID:{{ user_and_lender.lenderID }}</p>
+        <p>Company Name : {{ user_and_lender.company_name }}</p>
+        <p>Phone Number : {{ user_and_lender.lender_phone_no }}</p>
+        <p>Max Amount : {{ user_and_lender.max_amount }}</p>
+        <p>Interest Rate : {{ user_and_lender.interest_rate }}</p>
+        <p>Min Credit Score : {{ user_and_lender.min_creditscore }}</p>
+        <form method="post" action="{% url 'update_user_with_lender' %}">
+          {% csrf_token %}
+          <input type="hidden" name="customer_id" value="{{ user_and_lender.customerID }}">
+          <input type="hidden" name="lender_id" value="{{ user_and_lender.lenderID }}">
+          <button type="submit" class="select-button">Select</button>
+        </form>
+      </div>
+    {% endfor %} 
+    {% else %}
+      <h1>your credit score is very low <i>or</i> loan amount it very large not eligible for loan</h1>
+    {% endif %} 
+    {% endblock %}
+  </div>
+  </body>
+</html>

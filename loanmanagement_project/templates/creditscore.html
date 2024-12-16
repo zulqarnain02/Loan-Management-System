@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Add your head content here -->
+    <title>creditScore | loanManagement</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    {% load static %}
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "spartan", sans-serif;
+      }
+      body {
+        width: 100%;
+        background-image:url("{% static 'loan.png' %}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        /* margin: 10px; */
+        font-family: Arial, sans-serif;
+        margin: 10px;
+      }
+
+      #header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 80px;
+        background: #e3e6f3;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+        z-index: 999;
+        position: sticky;
+        top: 0;
+        left: 0;
+        height: 100px;
+      }
+
+      footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      footer .logo {
+        margin-bottom: 30px;
+      }
+
+      #navbar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #navbar li {
+        list-style: none;
+        padding: 0 20px;
+        position: relative;
+      }
+
+      #navbar li a {
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 600;
+        color: #1a1a1a;
+        transition: 0.3s ease;
+      }
+
+      #navbar li a:hover,
+      #navbar li a.active {
+        color: #088178;
+      }
+      #navbar li a.active::after,
+      #navbar li a:hover::after {
+        content: "";
+        width: 30%;
+        height: 2px;
+        background: #088178;
+        position: absolute;
+        bottom: -4px;
+        left: 20px;
+      }
+
+      #mobile {
+        display: none;
+        align-items: center;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .credit-score {
+        font-size: 48px;
+        font-weight: bold;
+        margin-top: 20px;
+        color: #088178;
+        text-align: center;
+      }
+
+      .credit-score-range {
+        font-size: 18px;
+        color: #1a1a1a;
+      }
+
+      .credit-score-form {
+        width: 50%;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.323);
+      }
+
+      .credit-score-form label {
+        display: block;
+        font-size: 16px;
+        margin-bottom: 5px;
+        color: #1a1a1a;
+      }
+
+      .credit-score-form input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+
+      .credit-score-form button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+
+      .credit-score-form button:hover {
+        background-color: #229126;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      label {
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #555;
+      }
+      input {
+        padding: 10px;
+        margin-bottom: 20px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      h2 {
+        color: #333;
+        text-align: center;
+        margin: 10px;
+      }
+
+      .error-message {
+        color: red;
+        margin-top: 10px;
+      }
+
+      .credit-score-tips {
+        font-size: 18px;
+        line-height: 1.5;
+        margin-top: 20px;
+        /* display: none; */
+        margin-left: 20px;
+      }
+
+      .credit-score-tips.active {
+        display: block;
+      }
+
+      .tips-header {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      .credit-score-meter {
+      width: 100%;
+      height: 20px;
+      background-color: #ccc;
+      border-radius: 10px;
+      position: relative;
+    }
+    .credit-score-range {
+      font-size: 25px;
+      text-align: center;
+      color: rgba(30, 0, 255, 0.712);
+    }
+    .credit-score-meter-value {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      transition: width 0.5s ease-in-out;
+    }
+
+    .credit-score-meter-value-excellent {
+      background-color: #007bff;
+    }
+
+    .credit-score-meter-value-good {
+      background-color: #ffc107;
+    }
+
+    .credit-score-meter-value-fair {
+      background-color: #ff8c00;
+    }
+
+    .credit-score-meter-value-poor {
+      background-color: #dc3545;
+    }
+    </style>
+  </head>
+  <body>
+    <!-- <section id="header">
+      <div>
+        <ul id="navbar">
+          <li><a href="/">home</a></li>
+          <li><a href="/loan_status/">application status</a></li>
+          <li><a class="active" href="/creditscore/">credit score</a></li>
+          <li><a href="/transaction/">loan repayment</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+    </section> -->
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand fs-1" href="#"><i>LoanPlace</i></a>
+        <button class="navbar-toggler fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse fs-5" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/loan_status/">Application Status</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/creditscore/">Credit Score</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/transaction/">Loan Repayment</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact/">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      {% if credit_score %}
+      <!-- Display credit score content -->
+      <div class="credit-score-meter">
+        <div class="credit-score-meter-value" id="creditScoreMeterValue"></div>
+      </div>
+      <h1 class="credit-score">{{ credit_score }}</h1>
+      <p class="credit-score-range" id="creditRange"></p>
+      <div class="credit-score-tips" id="creditScoreTips">
+        <h2 class="tips-header">Tips to Improve Your Credit Score</h2>
+
+        <ol>
+          <li>Make payments on time.</li>
+          <li>Keep your credit utilization ratio low (below 30%).</li>
+          <li>Have a long credit history (the longer, the better).</li>
+          <li>Avoid opening too many new credit accounts.</li>
+          <li>
+            Monitor your credit report regularly for errors or fraudulent
+            activity.
+          </li>
+        </ol>
+      </div>
+
+      <!-- Add any other content specific to displaying credit score -->
+
+      {% else %}
+      <!-- Display form to enter customerID -->
+      <div class="credit-score-form">
+        <h2>credit score</h2>
+        <form id="creditForm" method="get" action="{% url 'creditscore' %}">
+          {% if error_message %}
+          <!-- Display error message -->
+          <p style="color: red">{{ error_message }}</p>
+          {% endif %}
+          <label for="customerID">Enter Customer ID:</label>
+          <input type="text" id="customerID" name="customerID" required />
+          <button type="submit">Get Credit Score</button>
+        </form>
+      </div>
+      {% endif %}
+    </div>
+    <script>
+      const creditScore=document.querySelector('.credit-score').textContent;
+      console.log(creditScore)
+
+      // Update the credit score meter value and color
+  const creditScoreMeterValue = document.getElementById('creditScoreMeterValue');
+  creditScoreMeterValue.style.width = `${creditScore / 10}%`;
+
+  if (creditScore >= 850) {
+    creditScoreMeterValue.classList.add('credit-score-meter-value-excellent');
+  } else if (creditScore >= 700) {
+    creditScoreMeterValue.classList.add('credit-score-meter-value-good');
+  } else if (creditScore >= 600) {
+    creditScoreMeterValue.classList.add('credit-score-meter-value-fair');
+  } else {
+    creditScoreMeterValue.classList.add('credit-score-meter-value-poor');
+  }
+
+
+      if (creditScore >= 850) {
+        document.getElementById("creditRange").textContent = "Excellent";
+      } else if (creditScore >= 700) {
+        document.getElementById("creditRange").textContent = "Good";
+      } else if (creditScore >= 600) {
+        document.getElementById("creditRange").textContent = "Fair";
+      } else if (creditScore >= 500) {
+        document.getElementById("creditRange").textContent = "Poor";
+      } else {
+        document.getElementById("creditRange").textContent = "Very Poor";
+      }
+    </script>
+    <!-- Add your existing script tag or import JavaScript file if needed -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+    </script>
+  </body>
+</html>

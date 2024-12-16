@@ -1,0 +1,411 @@
+<!-- transaction.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transaction | loanManagement</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
+
+    {% load static %}
+    <style>
+      /* navbar */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "spartan", sans-serif;
+      }
+      h2 {
+        color: #333;
+        text-align: center;
+        margin: 20px;
+      }
+
+      h3 {
+        color: #007bff;
+      }
+
+      p {
+        color: #333;
+      }
+
+      button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+
+      form {
+        text-align: center;
+      }
+
+      label {
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #555;
+      }
+
+      input {
+        padding: 8px;
+        margin: 5px;
+      }
+
+      button[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      p.error-message {
+        color: red;
+      }
+
+      body {
+        width: 100%;
+        background-image: url("{% static 'loan.png' %}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        /* margin: 10px; */
+        font-family: Arial, sans-serif;
+        margin: 10px;
+      }
+
+      #header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 80px;
+        background: #e3e6f3;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+        z-index: 999;
+        position: sticky;
+        top: 0;
+        left: 0;
+        height: 100px;
+      }
+
+      footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      footer .logo {
+        margin-bottom: 30px;
+      }
+
+      #navbar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #navbar li {
+        list-style: none;
+        padding: 0 20px;
+        position: relative;
+      }
+
+      #navbar li a {
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 600;
+        color: #1a1a1a;
+        transition: 0.3s ease;
+      }
+
+      #navbar li a:hover,
+      #navbar li a.active {
+        color: #088178;
+      }
+      #navbar li a.active::after,
+      #navbar li a:hover::after {
+        content: "";
+        width: 30%;
+        height: 2px;
+        background: #088178;
+        position: absolute;
+        bottom: -4px;
+        left: 20px;
+      }
+
+      #mobile {
+        display: none;
+        align-items: center;
+      }
+      /* Add the following styles to your existing CSS */
+      .transaction-details {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 20px;
+        border: 3px solid black;
+        height: 200px;
+        text-align: center;
+        border-radius: 10px;
+        margin: 0 10px;
+      }
+
+      .transaction-detail {
+        border: 2px solid #007bff;
+        border-radius: 5px;
+        padding: 10px;
+        text-align: center;
+      }
+
+      .transaction-detail p {
+        margin: 0;
+        color: #333;
+      }
+      h3 {
+        text-align: center;
+        margin: 10px;
+        padding: 10px;
+      }
+      .transferMoney {
+        height: 50px;
+        width: 200px;
+        margin-top: 40px;
+        font-size: 20px;
+      }
+      /* Add the following styles to your existing CSS */
+      #paymentHistory table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        margin: 0 10px;
+      }
+
+      #paymentHistory th,
+      #paymentHistory td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      #paymentHistory th {
+        background-color: #007bff;
+        color: #fff;
+        text-align: center;
+      }
+
+      #paymentHistory tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      #paymentHistory tr:hover {
+        background-color: #ddd;
+      }
+
+      #paymentHistory td {
+        height: 40px;
+        font-size: 16px;
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+
+      .credit-score-form {
+        width: 50%;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.323);
+      }
+
+      .credit-score-form label {
+        display: block;
+        font-size: 16px;
+        color: #1a1a1a;
+        margin: 0;
+      }
+
+      .credit-score-form input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+
+      .credit-score-form button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+
+      .credit-score-form button:hover {
+        background-color: #229126;
+      }
+
+      .status-container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        align-items: center;
+      }
+
+      .credit-score-form h2 {
+        color: #333;
+        text-align: center;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand fs-1" href="#"><i>LoanPlace</i></a>
+        <button
+          class="navbar-toggler fs-3"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse fs-5" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/loan_status/">Application Status</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/creditscore/">Credit Score</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/transaction/">Loan Repayment</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact/">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    {% if show_transaction_details %}
+    <!-- Add the following HTML modifications -->
+    <h2><u>Transaction</u></h2>
+    <h3>Transaction Details</h3>
+    <div class="transaction-details">
+      <div class="transaction-detail">
+        <p><b>EMI amount per month:</b></p>
+        <p><b>&#8377;{{ emi_amount }}</b></p>
+      </div>
+      <div class="transaction-detail">
+        <p><b>Total number of EMI:</b></p>
+        <p><b>12</b></p>
+      </div>
+      <div class="transaction-detail">
+        <p><b>Number of EMI's paid:</b></p>
+        <p id="paid_emi"><b>{{ emi_count }}</b></p>
+      </div>
+      <div class="transaction-detail">
+        <p><b>Number of EMI's pending:</b></p>
+        <p><b>{{ pending_emis }}</b></p>
+      </div>
+    </div>
+    <center>
+      <button
+        onclick="transferMoney()"
+        class="transferMoney"
+        id="transferMoneyBtn"
+      >
+        Transfer Money
+      </button>
+    </center>
+    <!-- Display payment history -->
+    <div id="paymentHistory">
+      <h3>Payment History</h3>
+      <table border="1" id="paymentHistoryTable">
+        <tr>
+          <th>Payment Amount</th>
+          <th>Payment Date</th>
+          <th>Payment Time</th>
+          <th>Payment Type</th>
+        </tr>
+        {% for payment in payment_history %}
+        <tr>
+          <td>&#8377;{{ payment.payment_amount }}</td>
+          <td>{{ payment.payment_date }}</td>
+          <td>{{ payment.payment_time }}</td>
+          <td>{{ payment.payment_type }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    {% else %}
+    <!-- Display input form -->
+    <div class="status-container">
+      <div class="credit-score-form">
+        <h2>transaction</h2>
+        <form method="post" action="{% url 'transaction' %}">
+          {% csrf_token %} {% if error_message %}
+          <p style="color: red">{{ error_message }}</p>
+          {% endif %}
+          <label for="customer_id"><b>Enter Customer ID:</b></label>
+          <input type="text" id="customer_id" name="customer_id" required />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+    {% endif %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      const paid_emi = document.querySelector("#paid_emi");
+      function transferMoney() {
+        if (paid_emi.textContent == 12) {
+          alert("you are done with all the payments !");
+        } else {
+          alert("Transaction successfully done!");
+        }
+      }
+    </script>
+  </body>
+</html>

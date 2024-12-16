@@ -1,0 +1,24 @@
+DELIMITER //
+CREATE TRIGGER update_user_lender
+AFTER UPDATE ON user
+FOR EACH ROW
+BEGIN
+    DECLARE current_customer_id INT;
+
+    -- Check if the updated record matches the specified customer_id
+    IF NEW.customerID = current_customer_id THEN
+        -- Update the lenderID in the user table
+        UPDATE user
+        SET lenderID = NEW.lenderID
+        WHERE customerID = current_customer_id;
+
+        -- Insert the customerID into the status table
+        INSERT INTO status (customerID) VALUES (current_customer_id);
+
+        -- Insert the customerID and lenderID into the loan table
+        INSERT INTO loan (customerID, lenderID) VALUES (current_customer_id, NEW.lenderID);
+    END IF;
+END //
+DELIMITER ;
+
+
