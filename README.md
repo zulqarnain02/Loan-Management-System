@@ -1,4 +1,4 @@
-# 💼 Loan Management System
+![Screenshot 2024-12-16 161003](https://github.com/user-attachments/assets/8530366d-539a-4771-84d4-e759dd178f73)![Screenshot 2024-12-16 161629](https://github.com/user-attachments/assets/e703614f-16bc-4a1f-b659-d41b7cf04530)# 💼 Loan Management System
 
 Welcome to the Loan Management System 🚀 built using Django, HTML, CSS, JavaScript, and MySQL! This project streamlines loan management, tracking, and repayment processes with an intuitive UI.
 
@@ -88,11 +88,22 @@ Open the app in your browser: 🌐 [http://127.0.0.1:8000](http://127.0.0.1:8000
 ## 🎥 Screenshots
 
 - **Home Page**: Loan Categories  
-  ![Home Page](Screenshot-2024-12-16-074856.png)  
+  ![Screenshot 2024-12-16 074856](https://github.com/user-attachments/assets/425f333f-6638-4c20-8f99-90eedaa2cc30)
+
 - **Lender Selection**  
-  ![Lender Selection](Screenshot-2024-12-16-160914.png)  
+ ![Screenshot 2024-12-16 160914](https://github.com/user-attachments/assets/2649b567-09e5-4fe6-921f-338613f3d176)
+
 - **EMI Tracking**  
-  ![EMI Tracking](Screenshot-2024-12-16-161629.png)  
+  ![Screenshot 2024-12-16 161629](https://github.com/user-attachments/assets/299b2a10-a335-4819-a2c9-9bf096bcb4dc)
+
+- **Check Credit Score**
+  ![Screenshot 2024-12-16 161548](https://github.com/user-attachments/assets/108f72aa-a7ea-449d-9d9e-13034fec5413)
+
+- **Track Appliction Status**
+  ![Screenshot 2024-12-16 161526](https://github.com/user-attachments/assets/6e60cec0-6193-4666-bd3b-8be5d091bb02)
+
+- **Enter CustomerID**
+  ![Screenshot 2024-12-16 161003](https://github.com/user-attachments/assets/884a0d24-4ecf-4c55-a58c-edd84f4d3fe1)
 
 ## 💡 How It Works
 
