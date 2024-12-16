@@ -93,7 +93,7 @@ Open the app in your browser: 🌐 [http://127.0.0.1:8000](http://127.0.0.1:8000
 
 - **Lender Selection**
   
- ![Screenshot 2024-12-16 160914](https://github.com/user-attachments/assets/2649b567-09e5-4fe6-921f-338613f3d176)
+  ![Screenshot 2024-12-16 160914](https://github.com/user-attachments/assets/2649b567-09e5-4fe6-921f-338613f3d176)
 
 - **EMI Tracking**
   
